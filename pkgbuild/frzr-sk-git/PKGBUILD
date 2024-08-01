@@ -1,6 +1,6 @@
 # Maintainer: honjow <honjow@gmail.com>
 
-pkgname=frzr-sk
+pkgname=frzr-sk-git
 _pkgname=frzr
 pkgver=0.15.2.sk7.r0.g42fc42e
 pkgrel=1
@@ -11,9 +11,7 @@ conflicts=('frzr')
 url="https://github.com/honjow/frzr"
 license=('MIT')
 depends=('btrfs-progs' 'parted' 'libnewt' 'dosfstools' 'jq' 'util-linux' 'dmidecode' 'zstd' 'xz' 'aria2')
-
-_tag=0.15.2.sk7
-source=("git+$url#tag=${_tag}")
+source=("git+$url#branch=dev")
 md5sums=('SKIP')
 backup=('etc/frzr-sk.conf')
 
