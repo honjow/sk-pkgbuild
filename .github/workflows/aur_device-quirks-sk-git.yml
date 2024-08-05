@@ -3,7 +3,7 @@ name: Public AUR device-quirks-sk-git
 on:
   push:
     paths:
-        - "pkgbuild/device-quirks-sk-git/PKGBUILD"
+      - "pkgbuild/device-quirks-sk-git/PKGBUILD"
   workflow_dispatch:
 
 jobs:
@@ -14,6 +14,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Get Changed log
+        id: get_log
+        run: |
+          logdfile="pkgbuild/device-quirks-sk-git/changelog.txt"
+          if [ -f $logdfile ]; then
+            echo "::set-output name=changed_log::$(cat $logdfile | head -n 1)"
+          else
+            echo "::set-output name=changed_log::$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})"
+          fi
+
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
         with:
@@ -22,5 +32,5 @@ jobs:
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Update AUR package
+          commit_message: ${{ steps.get_log.outputs.changed_log }}
           ssh_keyscan_types: rsa,ecdsa,ed25519
