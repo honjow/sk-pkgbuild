@@ -24,6 +24,7 @@ jobs:
           git fetch --unshallow
           pkgver=$(git describe --tags --abbrev=0 | sed 's/^v//')
           echo "Updating PKGBUILD to version $pkgver"
+          echo "::set-output name=changed_log::$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})"
           cd ..
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
           cat PKGBUILD
@@ -37,5 +38,5 @@ jobs:
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Update AUR package
+          commit_message: ${{ steps.update.outputs.changed_log }}
           ssh_keyscan_types: rsa,ecdsa,ed25519
