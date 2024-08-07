@@ -5,6 +5,7 @@ on:
     paths:
         - "pkgbuild/hardware-audio-processing-git/PKGBUILD"
         - "pkgbuild/hardware-audio-processing-git/*.patch"
+        - "pkgbuild/hardware-audio-processing-git/*.service"
   workflow_dispatch:
 
 env:
@@ -35,7 +36,7 @@ jobs:
         with:
           pkgname: hardware-audio-processing-git
           pkgbuild: pkgbuild/hardware-audio-processing-git/PKGBUILD
-          assets: pkgbuild/hardware-audio-processing-git/*.patch
+          assets: pkgbuild/hardware-audio-processing-git/*.*
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
