@@ -1,1 +1,0 @@
-fix(Audio): Apply latest convolver scripts for ROG Ally and Legion Go.

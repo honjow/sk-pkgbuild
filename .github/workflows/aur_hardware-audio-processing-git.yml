@@ -24,9 +24,10 @@ jobs:
             COMMIT_LOG=$(cat $logdfile | head -n 1)
           else
             # echo "::set-output name=changed_log::$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})"
+            git fetch --depth=1 origin ${{ github.event.before }}
             COMMIT_LOG=$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})
           fi
-          echo "COMMIT_LOG=${COMMIT_LOG:-'Update AUR'}" >> $GITHUB_ENV
+          echo "COMMIT_LOG=${COMMIT_LOG:-Update AUR}" >> $GITHUB_ENV
 
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
