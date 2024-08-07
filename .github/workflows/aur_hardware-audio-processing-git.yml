@@ -7,6 +7,9 @@ on:
         - "pkgbuild/hardware-audio-processing-git/*.patch"
   workflow_dispatch:
 
+env:
+  COMMIT_LOG: Update AUR
+
 jobs:
   public_aur:
     runs-on: ubuntu-latest
@@ -20,10 +23,8 @@ jobs:
         run: |
           logdfile="pkgbuild/hardware-audio-processing-git/changelog.txt"
           if [ -f $logdfile ]; then
-            # echo "::set-output name=changed_log::$(cat $logdfile | head -n 1)"
             COMMIT_LOG=$(cat $logdfile | head -n 1)
           else
-            # echo "::set-output name=changed_log::$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})"
             git fetch --depth=1 origin ${{ github.event.before }}
             COMMIT_LOG=$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})
           fi
