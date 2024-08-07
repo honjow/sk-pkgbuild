@@ -1,0 +1,38 @@
+name: Public AUR hardware-audio-processing-git
+
+on:
+  push:
+    paths:
+        - "pkgbuild/hardware-audio-processing-git/PKGBUILD"
+        - "pkgbuild/hardware-audio-processing-git/*.patch"
+  workflow_dispatch:
+
+jobs:
+  public_aur:
+    runs-on: ubuntu-latest
+    if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Changed log
+        id: get_log
+        run: |
+          logdfile="pkgbuild/hardware-audio-processing-git/changelog.txt"
+          if [ -f $logdfile ]; then
+            echo "::set-output name=changed_log::$(cat $logdfile | head -n 1)"
+          else
+            echo "::set-output name=changed_log::$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})"
+          fi
+
+      - name: Publish AUR package
+        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        with:
+          pkgname: hardware-audio-processing-git
+          pkgbuild: pkgbuild/hardware-audio-processing-git/PKGBUILD
+          assets: pkgbuild/hardware-audio-processing-git/*.patch
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: ${{ steps.get_log.outputs.changed_log }}
+          ssh_keyscan_types: rsa,ecdsa,ed25519
