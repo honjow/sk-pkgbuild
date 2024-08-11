@@ -7,6 +7,9 @@ on:
       - "pkgbuild/sk-chos-addon-git/*.install"
   workflow_dispatch:
 
+env:
+  COMMIT_LOG: Update AUR
+    
 jobs:
   public_aur:
     runs-on: ubuntu-latest
@@ -22,6 +25,10 @@ jobs:
           git fetch --unshallow
           # pkgver=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
           pkgver=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//')
+          git_log=$(git log --pretty=format:"%h %s" | head -n 1)
+          if [ -n "$git_log" ]; then
+            echo "COMMIT_LOG=$git_log" >> $GITHUB_ENV
+          fi
           echo "Updating PKGBUILD to version $pkgver"
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
@@ -34,5 +41,5 @@ jobs:
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Update AUR package
+          commit_message: ${{ env.COMMIT_LOG }}
           ssh_keyscan_types: rsa,ecdsa,ed25519

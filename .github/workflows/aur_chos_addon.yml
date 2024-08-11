@@ -9,6 +9,9 @@ on:
     #   - "v*"
   workflow_dispatch:
 
+env:
+  COMMIT_LOG: Update AUR
+
 jobs:
   public_aur:
     runs-on: ubuntu-latest
@@ -24,7 +27,10 @@ jobs:
           git fetch --unshallow
           pkgver=$(git describe --tags --abbrev=0 | sed 's/^v//')
           echo "Updating PKGBUILD to version $pkgver"
-          echo "::set-output name=changed_log::$(git log --pretty=format:"%h %s" ${{ github.event.before }}..${{ github.sha }})"
+          git_log=$(git log --pretty=format:"%h %s" | head -n 1)
+          if [ -n "$git_log" ]; then
+            echo "COMMIT_LOG=$git_log" >> $GITHUB_ENV
+          fi
           cd ..
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
           cat PKGBUILD
@@ -38,5 +44,5 @@ jobs:
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: ${{ steps.update.outputs.changed_log }}
+          commit_message: ${{ env.COMMIT_LOG }}
           ssh_keyscan_types: rsa,ecdsa,ed25519
