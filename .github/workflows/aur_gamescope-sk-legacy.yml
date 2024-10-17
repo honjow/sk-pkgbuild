@@ -1,9 +1,9 @@
-name: Public AUR gamescope-sk
+name: Public AUR gamescope-sk-legacy
 
 on:
   push:
     paths:
-        - "pkgbuild/gamescope-sk/PKGBUILD"
+        - "pkgbuild/gamescope-sk-legacy/PKGBUILD"
   workflow_dispatch:
 
 env:
@@ -20,7 +20,7 @@ jobs:
       - name: Get Changed log
         id: get_log
         run: |
-          logdfile="pkgbuild/gamescope-sk/changelog.txt"
+          logdfile="pkgbuild/gamescope-sk-legacy/changelog.txt"
           if [ -f $logdfile ]; then
             COMMIT_LOG=$(cat $logdfile | head -n 1)
           else
@@ -32,8 +32,8 @@ jobs:
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
         with:
-          pkgname: gamescope-sk
-          pkgbuild: pkgbuild/gamescope-sk/PKGBUILD
+          pkgname: gamescope-sk-legacy
+          pkgbuild: pkgbuild/gamescope-sk-legacy/PKGBUILD
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
