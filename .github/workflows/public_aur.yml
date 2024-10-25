@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Update PKGBUILD
         id: update
@@ -26,7 +26,7 @@ jobs:
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        uses: KSXGitHub/github-actions-deploy-aur@v3
         with:
           pkgname: sk-holoiso-config
           pkgbuild: pkgbuild/sk-holoiso-config/PKGBUILD

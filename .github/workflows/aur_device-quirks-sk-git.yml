@@ -15,7 +15,7 @@ jobs:
     if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Get Changed log
         id: get_log
@@ -30,7 +30,7 @@ jobs:
           echo "COMMIT_LOG=${COMMIT_LOG:-Update AUR}" >> $GITHUB_ENV
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        uses: KSXGitHub/github-actions-deploy-aur@v3
         with:
           pkgname: chimeraos-device-quirks-sk-git
           pkgbuild: pkgbuild/device-quirks-sk-git/PKGBUILD

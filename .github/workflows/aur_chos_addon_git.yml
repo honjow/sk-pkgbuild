@@ -16,7 +16,7 @@ jobs:
     if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Update PKGBUILD
         id: update
@@ -33,7 +33,7 @@ jobs:
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.0
+        uses: KSXGitHub/github-actions-deploy-aur@v3
         with:
           pkgname: sk-chos-addon-git
           pkgbuild: pkgbuild/sk-chos-addon-git/PKGBUILD
