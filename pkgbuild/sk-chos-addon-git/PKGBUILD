@@ -91,7 +91,6 @@ package() {
     install -dm755 "${pkgdir}/usr/lib/systemd/system/hhd@.service.d"
     install -m644 -t "${pkgdir}/usr/lib/systemd/system/hhd@.service.d" "${source_dir}/systemd/system/hhd@.service.d"/*
 
-
     # user service
     install -dm755 "${pkgdir}/usr/lib/systemd/user"
     install -m644 -t "${pkgdir}/usr/lib/systemd/user" "${source_dir}/systemd/user"/*
