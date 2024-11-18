@@ -24,6 +24,7 @@ depends=(
     just
     libcec
     man-db
+    patch
     python-systemd
     refind
     wlr-randr
