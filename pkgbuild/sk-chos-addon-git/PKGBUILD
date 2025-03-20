@@ -9,7 +9,7 @@ pkgdesc="Addon for sk-chimeros"
 arch=('any')
 url="https://github.com/honjow/sk-chos-config.git"
 license=('MIT')
-makedepends=('git')
+makedepends=('git' 'fakeroot')
 depends=(
     amdgpu-test-scripts-common-git
     amd-s2idle-analysis-script-git
@@ -29,6 +29,9 @@ depends=(
     refind
     wlr-randr
     zram-generator
+)
+optdepends=(
+    plymouth
 )
 provides=(sk-chos-addon)
 conflicts=(sk-chos-addon)
@@ -147,9 +150,9 @@ package() {
     install -dm755 "${pkgdir}/usr/lib/udev/rules.d"
     install -m644 -t "${pkgdir}/usr/lib/udev/rules.d" "${source_dir}/lib/udev/rules.d"/*
 
-    # /usr/share/plymouth/themes/steamos/*
-    install -dm755 "${pkgdir}/usr/share/plymouth/themes/steamos"
-    install -m644 -t "${pkgdir}/usr/share/plymouth/themes/steamos" "${source_dir}/share/plymouth/themes/steamos"/*
+    # /usr/share/plymouth/themes
+    install -dm755 "${pkgdir}/usr/share/plymouth/themes"
+    cp -r "${source_dir}/share/plymouth/themes"/* "${pkgdir}/usr/share/plymouth/themes/"
 
     # 创建软链接解决重命名兼容
     # bin
