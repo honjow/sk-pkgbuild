@@ -112,7 +112,7 @@ package() {
 
     # plymouthd.conf
     install -dm755 "${pkgdir}/etc/plymouthd"
-    install -m644 -t "${pkgdir}/etc/plymouthd" "${source_dir}/etc/plymouthd"/*
+    cp -r "${source_dir}/etc/plymouthd"/* "${pkgdir}/etc/plymouthd"
 
     # /usr/share/sk-chos/just/*
     install -dm755 "${pkgdir}/usr/share/sk-chos/just"
