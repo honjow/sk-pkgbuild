@@ -9,13 +9,14 @@ pkgdesc="Addon for sk-chimeros"
 arch=('any')
 url="https://github.com/honjow/sk-chos-config.git"
 license=('MIT')
-makedepends=('git' 'fakeroot')
+makedepends=('git')
 depends=(
     amdgpu-test-scripts-common-git
     amd-s2idle-analysis-script-git
     cage
     expect
     efibootmgr
+    fakeroot
     fpaste
     fzf
     glow
