@@ -3,7 +3,8 @@ name: Public AUR moonlight-qt-axi-appimage
 on:
   push:
     paths:
-        - "pkgbuild/moonlight-qt-axi/PKGBUILD"
+        - "pkgbuild/moonlight-qt-axi-appimage/PKGBUILD"
+        - "pkgbuild/moonlight-qt-axi-appimage/*.sh"
   workflow_dispatch:
 
 jobs:
@@ -19,6 +20,7 @@ jobs:
         with:
           pkgname: moonlight-qt-axi-appimage
           pkgbuild: pkgbuild/moonlight-qt-axi-appimage/PKGBUILD
+          assets: pkgbuild/moonlight-qt-axi-appimage/*.sh
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
