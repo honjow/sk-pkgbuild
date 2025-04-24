@@ -1,9 +1,9 @@
-name: Public AUR device-quirks-sk-git
+name: Public AUR device-quirks-sk
 
 on:
   push:
     paths:
-      - "pkgbuild/device-quirks-sk-git/PKGBUILD"
+      - "pkgbuild/device-quirks-sk/PKGBUILD"
   workflow_dispatch:
 
 env:
@@ -20,7 +20,7 @@ jobs:
       - name: Get Changed log
         id: get_log
         run: |
-          logdfile="pkgbuild/device-quirks-sk-git/changelog.txt"
+          logdfile="pkgbuild/device-quirks-sk/changelog.txt"
           if [ -f $logdfile ]; then
             COMMIT_LOG=$(cat $logdfile | head -n 1)
           else
@@ -32,8 +32,8 @@ jobs:
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v3
         with:
-          pkgname: chimeraos-device-quirks-sk-git
-          pkgbuild: pkgbuild/device-quirks-sk-git/PKGBUILD
+          pkgname: chimeraos-device-quirks-sk
+          pkgbuild: pkgbuild/device-quirks-sk/PKGBUILD
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
