@@ -4,6 +4,7 @@ on:
   push:
     paths:
         - "pkgbuild/gamescope-sk/PKGBUILD"
+        - "pkgbuild/gamescope-sk/*.install"
   workflow_dispatch:
 
 env:
@@ -34,6 +35,7 @@ jobs:
         with:
           pkgname: gamescope-sk
           pkgbuild: pkgbuild/gamescope-sk/PKGBUILD
+          assets: pkgbuild/gamescope-sk/*.install
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
