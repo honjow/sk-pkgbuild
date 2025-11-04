@@ -3,7 +3,7 @@ pkgname=sk-chos-addon-git
 _basename=sk-chos-tool
 _pkgname=sk-chos-addon
 _reponame=sk-chos-config
-pkgver=1.38.4.r1.g0b074ef
+pkgver=2.9.3.r0.g89602a4
 pkgrel=1
 pkgdesc="Addon for sk-chimeros"
 arch=('any')
@@ -24,7 +24,7 @@ depends=(
     man-db
     patch
     python-systemd
-    refind
+    refind-r
     wlr-randr
     zram-generator
 )
