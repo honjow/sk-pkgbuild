@@ -93,7 +93,7 @@ package() {
 
     # system-sleep
     install -dm755 "${pkgdir}/usr/lib/systemd/system-sleep"
-    install -m644 -t "${pkgdir}/usr/lib/systemd/system-sleep" "${source_dir}/systemd/system-sleep"/*
+    install -m755 -t "${pkgdir}/usr/lib/systemd/system-sleep" "${source_dir}/systemd/system-sleep"/*
 
 
     # user service
