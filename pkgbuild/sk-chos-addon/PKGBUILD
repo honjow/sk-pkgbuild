@@ -4,7 +4,7 @@ pkgname=sk-chos-addon
 _basename=sk-chos-tool
 _reponame=sk-chos-config
 _pkgname=${pkgname}
-pkgver=2.23.0
+pkgver=2.27.2
 pkgrel=1
 pkgdesc="Addon for sk-chimeros"
 arch=('any')
@@ -38,7 +38,7 @@ provides=(sk-chos-addon)
 conflicts=(sk-chos-addon-git)
 replaces=(sk-chos-addon-git)
 source=("$pkgname-$pkgver.tar.gz::https://github.com/honjow/sk-chos-config/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('4dcc6315cee0da7696e29fe1ad6d60a77019adc8d7c18aae4cfe629e76dd115e')
+sha256sums=('47d4aa0c272deb718d8852baecf2b0b192c819d6c967421465a9e8719f230549')
 options=(!strip)
 backup=('etc/sk-chos-tool/github_cdn.conf')
 install=sk-chos-addon.install
@@ -94,7 +94,6 @@ package() {
     # system-sleep
     install -dm755 "${pkgdir}/usr/lib/systemd/system-sleep"
     install -m755 -t "${pkgdir}/usr/lib/systemd/system-sleep" "${source_dir}/systemd/system-sleep"/*
-
 
     # user service
     install -dm755 "${pkgdir}/usr/lib/systemd/user"
