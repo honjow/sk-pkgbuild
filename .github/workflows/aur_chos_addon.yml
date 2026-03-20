@@ -46,4 +46,3 @@ jobs:
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: ${{ env.COMMIT_LOG }}
           ssh_keyscan_types: rsa,ecdsa,ed25519
-          updpkgsums: true
