@@ -18,19 +18,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Update PKGBUILD
-        id: update
-        run: |
-          cd pkgbuild/sk-chos-addon-git
-          git fetch --unshallow
-          # pkgver=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
-          pkgver=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//')
-          git_log=$(git log --pretty=format:"%h %s" | head -n 1)
-          if [ -n "$git_log" ]; then
-            echo "COMMIT_LOG=$git_log" >> $GITHUB_ENV
-          fi
-          echo "Updating PKGBUILD to version $pkgver"
-          sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
+      # - name: Update PKGBUILD
+      #   id: update
+      #   run: |
+      #     cd pkgbuild/sk-chos-addon-git
+      #     git fetch --unshallow
+      #     # pkgver=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
+      #     pkgver=$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//')
+      #     git_log=$(git log --pretty=format:"%h %s" | head -n 1)
+      #     if [ -n "$git_log" ]; then
+      #       echo "COMMIT_LOG=$git_log" >> $GITHUB_ENV
+      #     fi
+      #     echo "Updating PKGBUILD to version $pkgver"
+      #     sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v3
