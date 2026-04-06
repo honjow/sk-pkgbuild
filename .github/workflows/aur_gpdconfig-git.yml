@@ -26,7 +26,7 @@ jobs:
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" pkgbuild/gpdconfig-git/PKGBUILD
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v3
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: gpdconfig-git
           pkgbuild: pkgbuild/gpdconfig-git/PKGBUILD

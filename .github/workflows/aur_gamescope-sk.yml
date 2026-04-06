@@ -31,7 +31,7 @@ jobs:
           echo "COMMIT_LOG=${COMMIT_LOG:-Update AUR}" >> $GITHUB_ENV
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v2.7.1
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: gamescope-sk
           pkgbuild: pkgbuild/gamescope-sk/PKGBUILD

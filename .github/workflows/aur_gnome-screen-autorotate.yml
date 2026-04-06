@@ -26,7 +26,7 @@ jobs:
       #     cat PKGBUILD
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v3
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: gnome-shell-extension-screen-autorotate
           pkgbuild: pkgbuild/gnome-shell-extension-screen-autorotate/PKGBUILD

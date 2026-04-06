@@ -30,7 +30,7 @@ jobs:
           echo "COMMIT_LOG=${COMMIT_LOG:-Update AUR}" >> $GITHUB_ENV
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v3
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: chimeraos-device-quirks-sk-git
           pkgbuild: pkgbuild/device-quirks-sk-git/PKGBUILD

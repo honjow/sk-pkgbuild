@@ -26,7 +26,7 @@ jobs:
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v3
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: sk-holoiso-config
           pkgbuild: pkgbuild/sk-holoiso-config/PKGBUILD

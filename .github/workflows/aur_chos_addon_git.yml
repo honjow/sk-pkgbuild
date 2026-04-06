@@ -33,7 +33,7 @@ jobs:
       #     sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@v3
+        uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: sk-chos-addon-git
           pkgbuild: pkgbuild/sk-chos-addon-git/PKGBUILD
