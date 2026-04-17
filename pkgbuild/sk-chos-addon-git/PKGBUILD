@@ -3,7 +3,7 @@ pkgname=sk-chos-addon-git
 _basename=sk-chos-tool
 _pkgname=sk-chos-addon
 _reponame=sk-chos-config
-pkgver=2.31.1.r0.g008c216
+pkgver=2.33.0.r0.gd46a8fb
 pkgrel=1
 pkgdesc="Addon for sk-chimeros"
 arch=('any')
@@ -165,6 +165,10 @@ package() {
     install -dm755 "${pkgdir}/usr/share/polkit-1/rules.d"
     install -m644 -t "${pkgdir}/usr/share/polkit-1/rules.d" "${source_dir}/share/polkit-1/rules.d"/*
 
+    # alpm hooks
+    install -dm755 "${pkgdir}/usr/share/libalpm/hooks"
+    install -m644 -t "${pkgdir}/usr/share/libalpm/hooks" "${source_dir}/share/libalpm/hooks"/* || true
+    
     # udev rules
     install -dm755 "${pkgdir}/usr/lib/udev/rules.d"
     install -m644 -t "${pkgdir}/usr/lib/udev/rules.d" "${source_dir}/lib/udev/rules.d"/*
