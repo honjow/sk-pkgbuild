@@ -19,9 +19,11 @@ jobs:
         id: update
         run: |
           cd pkgbuild/sk-chos-tool-git
-          git fetch --unshallow
+          git clone https://github.com/honjow/sk-chos-config.git
+          cd sk-chos-config
           pkgver=$(printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
           echo "Updating PKGBUILD to version $pkgver"
+          cd ..
           sed -i "s/^pkgver=.*/pkgver=$pkgver/" PKGBUILD
 
       - name: Publish AUR package

@@ -39,6 +39,7 @@ jobs:
         uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
         with:
           pkgname: sk-chos-addon
+          updpkgsums: true
           pkgbuild: pkgbuild/sk-chos-addon/PKGBUILD
           assets: pkgbuild/sk-chos-addon/*.install
           commit_username: ${{ secrets.AUR_USERNAME }}
