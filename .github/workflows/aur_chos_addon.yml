@@ -3,6 +3,7 @@ name: Public AUR sk ChimeraOS Addon
 on:
   push:
     paths:
+      - ".github/workflows/aur_chos_addon.yml"
       - "pkgbuild/sk-chos-addon/PKGBUILD"
       - "pkgbuild/sk-chos-addon/*.install"
     # tags:
@@ -40,6 +41,7 @@ jobs:
         with:
           pkgname: sk-chos-addon
           updpkgsums: true
+          post_process: rm -f -- sk-chos-addon-*.tar.gz
           pkgbuild: pkgbuild/sk-chos-addon/PKGBUILD
           assets: pkgbuild/sk-chos-addon/*.install
           commit_username: ${{ secrets.AUR_USERNAME }}
